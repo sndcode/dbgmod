@@ -2,3 +2,8 @@ C:\Users\admin\Documents\Visual Studio 2015\Projects\dbgmod\dbgmod\bin\Debug\dbg
 C:\Users\admin\Documents\Visual Studio 2015\Projects\dbgmod\dbgmod\bin\Debug\dbgmod.pdb
 C:\Users\admin\Documents\Visual Studio 2015\Projects\dbgmod\dbgmod\obj\Debug\dbgmod.dll
 C:\Users\admin\Documents\Visual Studio 2015\Projects\dbgmod\dbgmod\obj\Debug\dbgmod.pdb
+D:\gits\dbgmod\dbgmod\bin\Debug\dbgmod.dll
+D:\gits\dbgmod\dbgmod\bin\Debug\dbgmod.pdb
+D:\gits\dbgmod\dbgmod\obj\Debug\dbgmod.csprojResolveAssemblyReference.cache
+D:\gits\dbgmod\dbgmod\obj\Debug\dbgmod.dll
+D:\gits\dbgmod\dbgmod\obj\Debug\dbgmod.pdb

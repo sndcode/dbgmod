@@ -21,13 +21,14 @@ namespace dbgmod
     {
         public   bool skipintro { get; set; } = true;
         public   bool playsound { get; set; } = true;
+        public   bool shownotification { get; set; } = true;
     }
 
     public class ModEntry : Mod
     {
         internal static ModConfig Config;
         public bool isdebugmodeon;
-        public string modversion = "0.0.1";
+        public string modversion = "0.0.2";
 
         public void worker()
         {
@@ -88,7 +89,22 @@ namespace dbgmod
             if (e.KeyPressed == Keys.Delete)
             {
                 Game1.debugMode = !Game1.debugMode;
-                if (Config.playsound) { Game1.playSound("achievement"); }
+                if (Config.playsound)
+                {
+
+                    Game1.playSound("achievement");
+
+                    if (Game1.debugMode && Config.shownotification)
+                    {
+                        CommonHelper.ShowInfoMessage("debug mode ON", duration: 1000);
+                    }
+                    else if (!Game1.debugMode && Config.shownotification)
+                    {
+                        CommonHelper.ShowInfoMessage("debug mode OFF", duration: 1000);
+                    }
+
+
+                }
                 this.Monitor.Log("Debug mode was toggled :)", LogLevel.Info);
             }
         }
