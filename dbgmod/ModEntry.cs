@@ -27,13 +27,10 @@ namespace dbgmod
     public class ModEntry : Mod
     {
         internal static ModConfig Config;
-        public bool isdebugmodeon;
-        public string modversion = "0.0.2";
 
-        public void worker()
-        {
-            ControlEvents.KeyPressed += this.ReceiveKeyPress;
-        }
+        public bool isdebugmodeon;
+
+        public string modversion = "0.0.2";
 
         private void skipIntro()
         {
@@ -59,10 +56,10 @@ namespace dbgmod
             };
         }
 
-        private void HandleDebugHelp(object sender, EventArgsCommand e)
+        private void printHelpCommands()
         {
             this.Monitor.Log("=========================================", LogLevel.Info);
-            this.Monitor.Log("How to use the dbgmod version " + modversion , LogLevel.Info);
+            this.Monitor.Log("How to use the dbgmod version " + modversion, LogLevel.Info);
             this.Monitor.Log("Get ingame and press DELETE key once. Then you can use the debug hotkeys listed below. ", LogLevel.Info);
             this.Monitor.Log("=========================================", LogLevel.Info);
             this.Monitor.Log("DBGMOD by sandaasu - hotkey list - ", LogLevel.Info);
@@ -84,8 +81,25 @@ namespace dbgmod
             this.Monitor.Log("=========================================", LogLevel.Info);
         }
 
+        private void HandleDebugHelp(object sender, EventArgsCommand e)
+        {
+            printHelpCommands();
+        }
+
         private void ReceiveKeyPress(object sender, EventArgsKeyPressed e)
         {
+            if(e.KeyPressed == Keys.NumPad4)//FIND KEY
+            {
+                //Learn all professions
+                int i = 0;
+                while (i < 29)//Profession from 0 to 28
+                {
+                    Game1.player.professions.Add(i);
+                    this.Monitor.Log("Profession No. " + i + " learned !", LogLevel.Info);
+                    i++;
+                }
+            }
+
             if (e.KeyPressed == Keys.Delete)
             {
                 Game1.debugMode = !Game1.debugMode;
@@ -107,6 +121,14 @@ namespace dbgmod
                 }
                 this.Monitor.Log("Debug mode was toggled :)", LogLevel.Info);
             }
+            //Debug
+            if (e.KeyPressed == Keys.NumPad9)
+            {
+                string curweather = Game1.currentSeason.ToString();
+                string curtime = Game1.timeOfDay.ToString();
+                this.Monitor.Log("Current Weather : " + curweather + " And it is " + curtime , LogLevel.Info);
+
+            }
         }
 
         public override void Entry(IModHelper helper)
@@ -114,7 +136,7 @@ namespace dbgmod
             Command.RegisterCommand("help_dbgmod", "Shows debugmode hotkeys infos | debughelp").CommandFired += this.HandleDebugHelp;
             Config = helper.ReadConfig<ModConfig>();
             if (Config.skipintro) { skipIntro(); }
-            worker();
+            ControlEvents.KeyPressed += this.ReceiveKeyPress;
         }
     }
 }

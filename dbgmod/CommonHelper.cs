@@ -7,6 +7,9 @@ using StardewValley.Menus;
 
 namespace dbgmod
 {
+    //Credits : Pathoschild
+    //https://github.com/Pathoschild/
+
     /// <summary>Provides common utility methods for interacting with the game code shared by my various mods.</summary>
     internal static class CommonHelper
     {
